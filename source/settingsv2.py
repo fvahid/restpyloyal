@@ -1,56 +1,60 @@
- 
-userschema= {
-	'firstname': {
+DOMAIN = {
+    'user': {
+        'schema': {
+            'firstname': {
                 'type': 'string',
-		'minlength': 1,
-		'maxlength': 100,
-		'required': True
-	},
-       'lastname': {
+				'minlength': 1,
+				'maxlength': 100,
+				'required': True
+            },
+            'lastname': {
                 'type': 'string',
-		'minlength': 1,
-		'maxlength': 100,
-		'required': True,
-        },
-       'username': {
+				'minlength': 1,
+				'maxlength': 100,
+				'required': True,
+            },
+            'username': {
                 'type': 'string',
-		'minlength': 1,
-		'maxlength': 100,
-		'unique': True
-        },
-       'password': {
+				'minlength': 1,
+				'maxlength': 100,
+				'unique': True
+            },
+            'password': {
                 'type': 'string'
-        },
-       'phone': {
+            },
+            'phone': {
                 'type': 'string',
-		'minlength': 11,
-		'maxlength': 12,
-		'required': True,
-		'unique': True
-        },
-	'coinId': {
+				'minlength': 11,
+				'maxlength': 12,
+				'required': True,
+				'unique': True
+            },
+			'coinId': {
                 'type': 'string',
 				'minlength': 99,
 				'maxlength': 101,
 				'unique': True
-        },
-	'location': {
-		'type': 'dict',
-		'schema': {
-			'address': {'type': 'string'},
-			'city': {'type': 'string'}
-		},
-	},
-	'role': {
-		'type': 'list',
-		'allowed': ["cardHolder", "merchant", "admin"],
-	},
-        'creatDate': {
-                'type': 'datetime'
-        }			
-}
-
-coinInfoschema = {
+            },
+			'location': {
+				'type': 'dict',
+				'schema': {
+						'address': {'type': 'string'},
+						'city': {'type': 'string'}
+				},
+			},
+		    'role': {
+				'type': 'list',
+				'allowed': ["cardHolder", "merchant", "admin"],
+			},
+            'creatDate': {
+                'type': 'datetime',
+				'required': True
+				
+            }			
+        }
+    },
+	'coinInfo': {
+        'schema': {
             'currentBalance': {
                 'type': 'string'
             },
@@ -65,20 +69,21 @@ coinInfoschema = {
 				'unique': True
             },
 			'coinId': {
-                'type': 'string',
+                		'type': 'string',
 				'minlength': 99,
 				'maxlength': 101,
 				'unique': True,
 				'required': True,
             },
             'creatDate': {
+				'required': True,
                 'type': 'datetime'
 				
             }			
         }
-
-
-transactionsschema = {
+    },
+    'transactions': {
+        'schema': {
             'srcPhone': {
                 'type': 'string',
 				'minlength': 11,
@@ -117,12 +122,14 @@ transactionsschema = {
             },
 
             'creatDate': {
+				'required': True,
                 'type': 'datetime'
 				
             }			
-    }
-
-merchantschema = {
+        }
+    },	
+	'merchant': {
+        'schema': {
 		    'merchantId': {
                 'type': 'string',
 				'minlength': 8,
@@ -158,47 +165,14 @@ merchantschema = {
 				'unique': True
             },
             'merchantCreatDate': {
+				'required': True,
                 'type': 'datetime'
-	    }			
-}
- 
-
-userend = {
-    'item_title': 'user',
-    'allow_unknown': True,
-    'RESOURCE_METHODS' : ['GET', 'POST', 'DELETE'],
-    'cache_control': 'max-age=10,must-revalidate',
-    'cache_expires': 10,
-    'schema': userschema,
-    }
-coinInfoend = {
-    'item_title': 'coinInfo',
-    'cache_control': 'max-age=10,must-revalidate',
-    'cache_expires': 10,
-    'resource_methods': ['GET', 'POST'],
-    'schema': coinInfoschema,
-     }
-transactionsend = {
-    'item_title': 'transactions',
-    'cache_control': 'max-age=10,must-revalidate',
-    'cache_expires': 10,
-    'resource_methods': ['GET', 'POST'],
-    'schema': transactionsschema,
-     }
-merchantend = {
-    'item_title': 'merchant',
-    'cache_control': 'max-age=10,must-revalidate',
-    'cache_expires': 10,
-    'resource_methods': ['GET', 'POST'],
-    'schema': merchantschema,
-     }
- 
-
-DOMAIN = {
-    'user': userend,
-    'coinInfo': coinInfoend,
-    'transactions': transactionsend ,
-    'merchant': merchantend,
+				
+            }			
+        }
+    },	
+	
 }
 
-RESOURCE_METHODS = ['GET', 'POST', 'DELETE']
+
+

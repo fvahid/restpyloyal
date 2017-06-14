@@ -1,5 +1,33 @@
- 
-userschema= {
+
+DOMAIN = {
+    'user': {
+    'item_title': 'user',
+    'allow_unknown': True,
+    'RESOURCE_METHODS' : ['GET', 'POST', 'DELETE'],
+    'cache_control': 'max-age=10,must-revalidate',
+    'cache_expires': 10,
+    },
+    'coinInfo': {
+    'item_title': 'coinInfo',
+    'cache_control': 'max-age=10,must-revalidate',
+    'cache_expires': 10,
+    'resource_methods': ['GET', 'POST'],
+     },
+    'transactions': {
+    'item_title': 'transactions',
+    'cache_control': 'max-age=10,must-revalidate',
+    'cache_expires': 10,
+    'resource_methods': ['GET', 'POST'],
+     },
+    'merchant': {
+    'item_title': 'merchant',
+    'cache_control': 'max-age=10,must-revalidate',
+    'cache_expires': 10,
+    'resource_methods': ['GET', 'POST'],
+     },
+}
+     
+user= {
 	'firstname': {
                 'type': 'string',
 		'minlength': 1,
@@ -50,7 +78,7 @@ userschema= {
         }			
 }
 
-coinInfoschema = {
+coinInfo = {
             'currentBalance': {
                 'type': 'string'
             },
@@ -78,7 +106,7 @@ coinInfoschema = {
         }
 
 
-transactionsschema = {
+transactions= {
             'srcPhone': {
                 'type': 'string',
 				'minlength': 11,
@@ -122,7 +150,7 @@ transactionsschema = {
             }			
     }
 
-merchantschema = {
+merchant= {
 		    'merchantId': {
                 'type': 'string',
 				'minlength': 8,
@@ -161,44 +189,4 @@ merchantschema = {
                 'type': 'datetime'
 	    }			
 }
- 
 
-userend = {
-    'item_title': 'user',
-    'allow_unknown': True,
-    'RESOURCE_METHODS' : ['GET', 'POST', 'DELETE'],
-    'cache_control': 'max-age=10,must-revalidate',
-    'cache_expires': 10,
-    'schema': userschema,
-    }
-coinInfoend = {
-    'item_title': 'coinInfo',
-    'cache_control': 'max-age=10,must-revalidate',
-    'cache_expires': 10,
-    'resource_methods': ['GET', 'POST'],
-    'schema': coinInfoschema,
-     }
-transactionsend = {
-    'item_title': 'transactions',
-    'cache_control': 'max-age=10,must-revalidate',
-    'cache_expires': 10,
-    'resource_methods': ['GET', 'POST'],
-    'schema': transactionsschema,
-     }
-merchantend = {
-    'item_title': 'merchant',
-    'cache_control': 'max-age=10,must-revalidate',
-    'cache_expires': 10,
-    'resource_methods': ['GET', 'POST'],
-    'schema': merchantschema,
-     }
- 
-
-DOMAIN = {
-    'user': userend,
-    'coinInfo': coinInfoend,
-    'transactions': transactionsend ,
-    'merchant': merchantend,
-}
-
-RESOURCE_METHODS = ['GET', 'POST', 'DELETE']
